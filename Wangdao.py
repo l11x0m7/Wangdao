@@ -65,7 +65,7 @@ class PhotoSpider:
 if __name__ == '__main__':
     reload(sys)
     sys.setdefaultencoding('utf-8')
-    print """
+    print u"""
     ---------------------------------------
        程序：BYR论坛照片爬取程序
        版本：0.1
@@ -75,7 +75,7 @@ if __name__ == '__main__':
        功能：爬取北邮人论坛上的照片
        使用：输入要爬取的网页范围（一页30个帖子）
     ---------------------------------------
-    """
+    """.decode().encode('gbk')
     start = input("where to start? ")
     to = input("where to end? ")
     spider = PhotoSpider(start, to)
