@@ -52,12 +52,16 @@ class PhotoSpider:
         for each in match:
             name = each.strip().split('/')
             name = tiezi.decode() + name[-2] + name[-1]
+            path1 = self.dirname + '/' + name + '.jpg'
+            path2 = self.dirname + '/' + name[-2] + name[-1] + '.jpg'
             imgurl = self.head + each
+            if os.path.exists(path1) or os.path.exists(path2):
+                continue
             try:
-                urllib.urlretrieve(imgurl, self.dirname + '/' + name + '.jpg')
+                urllib.urlretrieve(imgurl, path1)
             except IOError, e:
                 try:
-                    urllib.urlretrieve(imgurl, self.dirname + '/' + name[-2] + name[-1] + '.jpg')
+                    urllib.urlretrieve(imgurl, path2)
                 except IOError, e:
                     print '[SaveImg]:', e
 
